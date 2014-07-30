@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <build>
-        <finalName>SDKServerTestService</finalName>
+        <finalName>webDemo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -40,7 +40,7 @@
                         <goals>
                             <goal>exec-war-only</goal>
                         </goals>
-                        <phase>package</phase>
+                        <!--<phase>package</phase>-->
                         <configuration>
                             <serverXml>D:\apache-tomcat\conf\server.xml</serverXml>
                             <attachArtifactClassifierType>war</attachArtifactClassifierType>
@@ -127,6 +127,7 @@
                 <version>2.4</version>
                 <configuration>
                     <dependentWarExcludes>WEB-INF/lib</dependentWarExcludes>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
@@ -195,11 +196,11 @@
             <version>1.2.13</version>
         </dependency>
 
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>log4j</groupId>-->
+            <!--<artifactId>log4j</artifactId>-->
+            <!--<version>1.2.17</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
