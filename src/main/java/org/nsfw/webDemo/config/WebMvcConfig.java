@@ -1,16 +1,11 @@
-package com.sunday.webDemo.config;
+package org.nsfw.webDemo.config;
 
-import com.sunday.webDemo.web.interceptor.EasyInterceptor;
-import org.springframework.context.annotation.Bean;
+import org.nsfw.webDemo.web.interceptor.EasyInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
-import javax.servlet.Filter;
 
 /**
  * function description.
@@ -22,8 +17,9 @@ import javax.servlet.Filter;
  * @version 1.0.0
  */
 @Configuration
-@ComponentScan(basePackages = {"com.sunday"}, includeFilters = {@ComponentScan.Filter(value = Controller.class)})
+@ComponentScan(basePackages = {"org.nsfw"}, includeFilters = {@ComponentScan.Filter(value = Controller.class)})
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+
     @Override
     public RequestMappingHandlerMapping requestMappingHandlerMapping() {
         RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
@@ -40,5 +36,15 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("forward:/index.jsp");
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources");
     }
 }
